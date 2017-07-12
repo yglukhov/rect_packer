@@ -8,6 +8,7 @@ type RectPacker* = ref object
     maxX*, maxY*: int32
 
 proc newPacker*(width, height: int32): RectPacker =
+    ## Create a new packer with initial `width` and `height`
     result.new()
     result.rect.width = width
     result.rect.height = height
@@ -22,6 +23,10 @@ proc width*(p: RectPacker): int32 = p.rect.width
 proc height*(p: RectPacker): int32 = p.rect.height
 
 proc pack*(p: RectPacker, width, height: int32): Point =
+    ## Try pack a rect with `width` and `height` into the resulting rect.
+    ## Returns coordinates of the packed rect, or `(-1, -1)` if could not fit.
+    ## Use convenience template `hasSpace` on the result value to check if the
+    ## rect was packed successfully.
     if not p.c1.isNil:
         # We are leaf
         result = p.c1.pack(width, height)
@@ -57,6 +62,9 @@ proc pack*(p: RectPacker, width, height: int32): Point =
         result = p.c1.pack(width, height)
 
 proc packAndGrow*(p: var RectPacker, width, height: int32): Point =
+    ## Try pack a rect with `width` and `height` into the resulting rect.
+    ## Increase the size of the resulting rect if it doesn't have space for the
+    ## packed rect. Returns coordinates of the packed rect.
     while true:
         result = p.pack(width, height)
         if result.hasSpace: break
