@@ -1,4 +1,4 @@
-# rect_packer
+# rect_packer [![nimble](https://raw.githubusercontent.com/yglukhov/nimble-tag/master/nimble_js.png)](https://github.com/yglukhov/nimble-tag)
 Simple algorithm for packing rects into a bigger rect.
 
 # Usage
