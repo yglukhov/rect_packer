@@ -5,6 +5,8 @@ author        = "Yuriy Glukhov"
 description   = "Pack rects into bigger rect"
 license       = "MIT"
 
+skipDirs = @["tests"]
+
 # Dependencies
 
 requires "nim >= 0.17.1"
